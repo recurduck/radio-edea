@@ -1,0 +1,29 @@
+//Setup
+@import './setup/reset.scss';
+@import './setup/typography.scss';
+@import './setup/variables.scss';
+@import './setup/functions.scss';
+@import './setup/mixins.scss';
+
+//Basics
+@import './basics/base.scss';
+@import './basics/helpers.scss';
+@import './basics/layout.scss';
+
+//Cmps
+@import './cmps/header.scss';
+@import './cmps/footer.scss';
+@import './cmps/search.scss';
+
+
+
+  /*for spining */
+  /* @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  } */
+  

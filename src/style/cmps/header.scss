@@ -1,0 +1,104 @@
+header.container {
+  background-color: $clr4;
+  min-height: 50px;
+  justify-content: space-between;
+  .logo {
+    width: 250px;
+  }
+  input[type=checkbox] {
+    display: none;
+  }
+  .dropdown {
+    align-items: center
+  }
+  ul {
+    max-height: 0px;
+    transition: all 1s cubic-bezier(.325, 1, .22, 1);
+    align-items: center;
+  }
+  li{ 
+    padding: 5px 10px;
+    a:hover, a.active{
+      text-decoration: underline;
+      color: $clr1;
+      transition: .3s;
+    }
+  }
+  @include for-tablet-layout {
+    .dropdown {
+      align-items: flex-start;
+    }
+    nav {
+      ul {
+        flex-direction: column;
+        align-items: stretch;
+        max-height: 0px;
+        overflow: hidden;
+        transition: all 1s cubic-bezier(.325, 1, .22, 1);
+      }
+      li {
+        border-bottom: .18rem solid #fff;
+        padding: 5px 0;
+        text-align: center;
+        :last-of-type {
+          margin-bottom: .625rem;
+        }  
+      }
+    }
+    .hamburger {
+      display: block;
+      position: absolute;
+      top: 18px;
+      right: 13px;
+      height: 27px;
+      width: 27px;
+      transition: all 1s cubic-bezier(.19, 1, .22, 1);
+      cursor: pointer;
+      .line {
+        position: absolute;
+        display: block;
+        background: $clr1;
+        width: 18px;
+        height: .15rem;
+        border-radius: .2rem;
+        left: 0;
+        transition: all .6s cubic-bezier(.5, .1, 0, 1.2);
+      }
+      .line-1 {
+        top: 0;
+      }
+      .line-2 {
+        top: 7px;
+        width: 14px;
+        transform: translateX(2px);
+        -webkit-transform: translateX(2px);
+      }
+      .line-3 {
+        top: 14px;
+      }
+    }
+    input[type=checkbox]:checked {
+      ~ nav ul {
+        height: auto;
+        max-height: 12rem;
+        transition: all 1s cubic-bezier(.5, 1, .22, 1);
+      }
+      ~ label {
+        .line-1 {
+          top: 0px;
+          width: 22px;
+          transform: translateX(-11px) rotate(-45deg) translateY(12px);
+        }
+        .line-2 {
+          opacity: 0;
+        }
+        .line-3 {
+          top: 14px;
+          width: 22px;
+          transform: translateX(-8px) rotate(45deg) translateY(-8px);
+        }
+      }
+    }
+  }
+}
+

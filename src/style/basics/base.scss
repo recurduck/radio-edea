@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    @include for-tablet-layout {
+        font-size: 16px;
+    }
+}
+
+body {
+    background-color: $clr2;
+    color: $White;
+    font-family:'Lucida Grande';
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-family:'Raleway';
+    cursor: pointer;      
+    :focus {
+        color: inherit;
+    }
+    :active {
+        color: inherit;
+    }    
+}
+
+p { 
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+    color: inherit;
+    border: none;
+    background-color: $clr3;
+    &:disabled {
+        background-color: $clr2;
+        color: $clr3;
+        cursor:not-allowed;
+    }
+}
+
+input {
+    outline: none;
+    // border: none;
+    border: 1px solid $clr4;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    font-family:'Lucida Grande';
+    text-align: center;
+}
+
+h1 { 
+    font-size: 2.5rem;
+    line-height: 60px;
+}
+
+h2 { 
+    font-size: 1.25rem;
+}
+h3 {
+    font-size: 0.625rem;
+    letter-spacing: 0.5px;
+    text-align: left;
+    font-family:'Open Sans';
+}
