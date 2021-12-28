@@ -1,0 +1,11 @@
+.track-card {
+  .track-play-count img {
+    width: 25px;
+  }
+  &.list{
+
+  }
+  &.tile{
+    flex-direction: column;
+  }
+}

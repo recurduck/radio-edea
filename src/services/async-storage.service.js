@@ -6,7 +6,7 @@ export const localstorageService = {
 window.lss = localstorageService;
 
 function loadFromStorage(entityType, delay = 1200) {
-    var entities = JSON.parse(localStorage.getItem(entityType)) || []
+    var entities = JSON.parse(localStorage.getItem(entityType)) || {searchHistory: []}
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
             resolve(entities)

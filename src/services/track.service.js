@@ -1,8 +1,5 @@
-import axios from 'axios'
-import { localstorageService } from './async-storage.service.js'
 
 export const trackService = {
-    search,
     query,
     getById,
     add,
@@ -10,12 +7,6 @@ export const trackService = {
 }
 //debbug
 window.ts = trackService;
-
-
-async function search(trackName, pagination) {
-    const url = pagination ? pagination : `https://api.mixcloud.com/search/?limit=6&offset=0&q=${trackName}&type=cloudcast`
-    return await (await axios.get(url)).data
-}
 
 async function query(filterBy, entityType = 'searchRes') {
     console.log(`querry - filter by:${filterBy} entityType: ${entityType}`);
