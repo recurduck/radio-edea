@@ -1,11 +1,32 @@
 .track-details {
   min-width: 600px;
   padding: 30px 10px;
-
+  .track-player {
+    position: relative;
+    width: 100%;
+  }
 }
-
-.track-player {
+.widget-player { 
+  transition: .4s;
+  opacity: 1;
+  position: absolute;
+  &.hide {
+    opacity: 0.2;
+  }
+}
+.demo-player {
+  position: absolute;
+  background-color: #333333;
+  height: 120px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > * {
+    font-size: 2rem;
+    color: $clr1;
+    text-align: center;
+  }
 }
 .disk-player {
   width: 335px;
@@ -15,6 +36,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  .track-button {
+    width: 100px;
+    position: absolute;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity .3s;
+    &.transparent {
+      opacity: 0;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    .track-button {
+      opacity: .7;
+    }
+  }
   &.spin {
     animation: rotate 3s linear infinite;
   }

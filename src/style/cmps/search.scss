@@ -2,3 +2,22 @@
   color: $clr4;
   height: 88vh;
 }
+
+.display-controler {
+  img {
+    width: 25px;
+  }
+  button {
+    background-color: transparent;
+    font-size: 1.5rem;
+    min-width: 45px;
+    height: 45px;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    &:hover {
+      background-color: $clr3;
+    }
+  }
+}

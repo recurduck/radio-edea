@@ -38,11 +38,8 @@
 .h-10 { height: 10%; }
 
 // flex helpers
-
 .flex {
-
   display: flex;
-
   > *.full {
       flex: 1;
   }
@@ -80,15 +77,12 @@
 }
 
 /* GRID */
-
 .grid {
   display: grid;
 }
-
 .grid-gap {
   gap: 10px 10px;
 }
-
 .justify-center {
   justify-content: center;
 }
@@ -144,7 +138,6 @@ h4{
   background-color:inherit;
   color: #222222;
 }
-
 // Media helpers
 
 // .square-ratio {

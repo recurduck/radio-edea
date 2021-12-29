@@ -1,11 +1,40 @@
 .track-card {
-  .track-play-count img {
-    width: 25px;
+  border-bottom: 1px solid $clr7;
+  &:hover {
+    background-color: $clr2;
   }
-  &.list{
-
+  &.active,
+  .active:hover {
+    background-color: $clr3;
+    cursor: default;
   }
-  &.tile{
+  .track-secondary-details > div {
+    align-items: center;
+    p {
+      font-size: 1.125rem;
+      margin-left: 5px;
+    }
+  }
+  &.list {
+    .track-preview {
+      justify-content: space-evenly;
+      padding: 0px 5px;
+      h3 {
+        color: $clr4;
+      }
+      h3 ~ p {
+        font-weight: bold;
+        height: 17px;
+        overflow-y: hidden;
+      }
+      .track-secondary-details {
+        img {
+          width: 20px;
+        }
+      }
+    }
+  }
+  &.tile {
     flex-direction: column;
   }
 }
