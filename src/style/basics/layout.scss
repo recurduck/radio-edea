@@ -1,5 +1,6 @@
 .app {
     height: 100vh;
+    overflow: hidden;
 }
 
 .container {
@@ -11,6 +12,16 @@
     margin: 0 auto;
 }
 
-section:nth-child(n+3) {
+.home {
+    background: #000;
+    height: 100%;
+    overflow: hidden;
+    max-width: 1210px;
+    padding: 0px 30px;
+    border: 1px black solid;
+    margin: 0 auto;
+}
+
+section:nth-child(n + 3) {
     background-color: $darkBlue2;
 }

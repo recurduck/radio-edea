@@ -18,7 +18,7 @@ export default function Header() {
 
                 <nav>
                     <ul className='flex'>
-                        <li><NavLink to='/'>Home</NavLink></li>
+                        <li><NavLink to='/home'>Home</NavLink></li>
                         <li><NavLink to='/library'>Library</NavLink></li>
                         <li><NavLink to='/mysongs'>MySongs</NavLink></li>
                     </ul>
