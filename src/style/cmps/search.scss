@@ -1,12 +1,63 @@
 .search {
   color: $clr4;
-  height: 88vh;
-  // background-color: #0e001a;
+  // display: block;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background-color: #0e001a;
+  color: $White;
+  .search-form {
+    width: 100%;
+    justify-content: space-evenly;
+    input {
+      width: 70%;
+      height: 45px;
+      border-radius: 10px;
+      padding-left: 15px;
+      font-size: 1rem;
+      background-color: $clr4;
+      color: $White;
+      &:focus , &:hover{
+        background-color: $clr7;
+        color: $White;
+      }
+      &::placeholder {
+        color: $White;
+        opacity: 0.4; /* Firefox */
+      }
+    }
+    button {
+      font-size: 1rem;
+      border-radius: 10px;
+    }
+  }
+  nav {
+    width: 34%;
+    h1 {
+      color: red
+    }
+  }
+  main {
+    width: 66%;
+    display: flex;
+    min-height: 100%;
+    .track-details {
+      flex-grow: 1;
+    }
+    .search-history {
+      flex-grow: 1;
+    }
+  }
 }
 
 .display-controler {
   img {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(82deg) brightness(103%) contrast(102%);
     width: 25px;
+    &.active {
+      filter: invert(71%) sepia(56%) saturate(517%) hue-rotate(28deg) brightness(99%) contrast(94%);
+    }
   }
   button {
     background-color: transparent;
@@ -14,11 +65,13 @@
     min-width: 45px;
     height: 45px;
     padding: 5px;
+    color: $White;
     border-radius: 10px;
     text-align: center;
     vertical-align: middle;
+    transition: .3s;
     &:hover {
-      background-color: $clr3;
+      background-color: rgba(77, 77, 77, 0.438);
     }
   }
 }

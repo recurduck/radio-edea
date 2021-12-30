@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { eventBusService } from '../services/event-bus.service.js'
+import { userEvents } from '../services/event-bus.service.js'
 
 import LineLoader from './LineLoader.jsx'
 import Danger from '../assets/icons/danger.svg'
@@ -9,9 +9,9 @@ export default function UserMsg() {
   const [msg, setMsg] = useState(null)
 
   useEffect(() => {
-    let removeEvent = eventBusService.on('show-user-msg', (msg) => {
+    let removeEvent = userEvents.on('show-user-msg', (msg) => {
       setMsg({ ...msg })
-      setTimeout(() => setMsg(null), 2500)
+      setTimeout(() => setMsg(null), 20500)
     })
     return () => {
       removeEvent()
@@ -24,7 +24,7 @@ export default function UserMsg() {
     <div className={'user-msg ' + msgClass}>
       <div className='flex'>
         <img src={msgClass === 'danger' ? Danger : Success} alt='notify' />
-        <div className='flex space-between align-center'>
+        <div className='flex space-around align-center'>
           <span className='mb-2'>{msg.txt}</span>
           <button onClick={() => setMsg(null)}>x</button>
         </div>

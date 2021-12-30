@@ -8,8 +8,9 @@ export const trackService = {
 //debbug
 window.ts = trackService;
 
-async function query(filterBy, entityType = 'searchRes') {
+async function query(filterBy, entityType = 'mytracks') {
     console.log(`querry - filter by:${filterBy} entityType: ${entityType}`);
+    
 }
 
 async function getById(trackId) {
@@ -22,13 +23,4 @@ async function add(track) {
 
 async function remove(trackId) {
     console.log('remove', trackId);
-}
-
-function _makeId(length = 6) {
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var txt = '';
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return txt;
 }

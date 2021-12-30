@@ -12,11 +12,15 @@ export default function TrackPreview({ track, displayList }) {
         return timestamp.match(/([\d]+-){2}[\d]+/)[0]
     }
 
+    const onSendTrackToPlayer = (ev) => {
+        
+    }
     return (
         <QueryNavLink to={`/library/${track.key.replaceAll('/', '~')}`}
             className={`track-card flex ${displayList ? 'list' : 'tile'}`}
+            onClick={(ev) => onSendTrackToPlayer(ev)}
         >
-            <img src={displayList ? track.pictures.medium : track.pictures.large} />
+            <img src={displayList ? track.pictures.medium : track.pictures.large} alt='trackImg' />
             <div className='track-preview flex column w-100'>
                 <div className='track-main-details flex column'>
                     <h3>by {track.user.name}</h3>
@@ -24,11 +28,11 @@ export default function TrackPreview({ track, displayList }) {
                 </div>
                 <div className='track-secondary-details flex space-between'>
                     <div className='track-play-count flex'>
-                        <img src={headphones} />
+                        <img src={headphones} alt='headphones'/>
                         <p>{track.play_count}</p>
                     </div>
                     <div className='track-play-duration flex'>
-                        <img src={duration} />
+                        <img src={duration} alt='duration'/>
                         <p>{formatToDuration(track.audio_length)}</p>
                     </div>
                     <div className='track-created flex'>

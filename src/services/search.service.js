@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { localstorageService } from './async-storage.service.js'
+import { localstorageService } from './localstorage.service.js'
 
 export const searchService = {
     search,
     getById,
-    getEmbedById,
+    clear,
     query,
     remove,
 }
@@ -22,23 +22,26 @@ async function getById(trackId) {
     return await (await axios.get(url)).data
 }
 
-async function getEmbedById(trackId) {
-    const url = `https://api.mixcloud.com${trackId}embed-html/?width=100%`
-    return await (await axios.get(url)).data
+function query() {
+    const user = localstorageService.loadFromStorage(KEY) || {}
+    return user.searchHistory
 }
 
-async function query() {
-    return (await localstorageService.loadFromStorage(KEY)).searchHistory
-}
-
-async function remove(searchIdx) {
-    let user = await localstorageService.loadFromStorage(KEY)
+function remove(searchIdx) {
+    let user = localstorageService.loadFromStorage(KEY)
     user.searchHistory.splice(searchIdx, 1)
     localstorageService.saveToStorage(KEY, user)
 }
 
-async function _addSearchHistory(trackName) {
-    let user = await localstorageService.loadFromStorage(KEY)
+function clear() {
+    let user = localstorageService.loadFromStorage(KEY)
+    user.searchHistory = []
+    localstorageService.saveToStorage(KEY, user)
+}
+
+function _addSearchHistory(trackName) {
+    let user = localstorageService.loadFromStorage(KEY) || {}
+    if(!user.searchHistory) user.searchHistory = []
     if (user.searchHistory[0] !== trackName) user.searchHistory.unshift(trackName)
     localstorageService.saveToStorage(KEY, user)
 }

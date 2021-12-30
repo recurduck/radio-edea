@@ -1,40 +1,55 @@
 .track-card {
   border-bottom: 1px solid $clr7;
+  color: $White;
+  margin-top: 5px;
   &:hover {
-    background-color: $clr2;
+    background-color: $clr4;
   }
   &.active,
   .active:hover {
-    background-color: $clr3;
+    background-color: $clr5;
     cursor: default;
   }
   .track-secondary-details > div {
     align-items: center;
     p {
-      font-size: 1.125rem;
+      font-size: 1rem;
       margin-left: 5px;
     }
   }
-  &.list {
-    .track-preview {
-      justify-content: space-evenly;
-      padding: 0px 5px;
-      h3 {
-        color: $clr4;
-      }
-      h3 ~ p {
-        font-weight: bold;
-        height: 17px;
-        overflow-y: hidden;
-      }
-      .track-secondary-details {
-        img {
-          width: 20px;
-        }
+  .track-preview {
+    justify-content: space-evenly;
+    padding: 0px 5px;
+    h3 {
+      color: $clr1;
+    }
+    h3 ~ p {
+      font-weight: bold;
+      height: 17px;
+      overflow-y: hidden;
+    }
+    .track-secondary-details {
+      img {
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(82deg) brightness(103%) contrast(102%);
+        width: 16px;
       }
     }
   }
   &.tile {
     flex-direction: column;
+    width: 43%;
+    img {
+      width: 100%;
+    }
+    .track-created {
+      display: none;
+    }
+  }
+}
+
+.tracks-container {
+
+  &.wrap > a{
+    margin: 10px;
   }
 }
