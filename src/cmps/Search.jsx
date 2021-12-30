@@ -6,6 +6,7 @@ import { searchService } from '../services/search.sercive'
 
 import TrackList from './TrackList'
 import Loader from './Loader'
+import UserMsg from './UserMsg'
 
 import list from '../assets/icons/list.svg'
 import tiles from '../assets/icons/tiles.svg'
@@ -65,6 +66,7 @@ export default function Search() {
                     </div>
                 </div>
             </nav>
+            <UserMsg />
             {/* todo redux for the history */}
             <Outlet />
         </div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { searchService } from '../services/search.sercive'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import playIcon from '../assets/icons/play.svg'
 import pauseIcon from '../assets/icons/pause.svg'
@@ -52,7 +53,7 @@ export default function TrackDetails() {
             widget.togglePlay()
             widget.getIsPaused().then(res => setIsPlay(!res))
         }
-        else console.log('event bus please select track to play')
+        else showErrorMsg('Please select track to play')
     }
 
     // const loadTrack = (song = track) => {
