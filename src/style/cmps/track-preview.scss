@@ -1,5 +1,17 @@
+@keyframes insertdisk {
+  0% {
+    left: 0;
+    opacity: 1;
+  }
+  100% {
+    left: 70%;
+    opacity: 0.3;
+  }
+}
+
 .track-card {
   border-bottom: 1px solid $clr7;
+  min-height: 100px;
   color: $White;
   margin-top: 5px;
   &:hover {
@@ -44,12 +56,18 @@
     .track-created {
       display: none;
     }
+  }  
+  &.move-play > img {
+    position: relative;
+    animation: insertdisk .5s ease-out 1;
   }
 }
 
 .tracks-container {
+  display: flex;
 
   &.wrap > a{
     margin: 10px;
   }
 }
+

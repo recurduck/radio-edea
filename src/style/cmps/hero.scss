@@ -6,7 +6,6 @@
   overflow: hidden;
 
   h1 {
-    width: 10%;
     transition: all .3s cubic-bezier(.325, 1, .22, 1);
     border: 2px solid yellow;
     border-radius: 50%;
@@ -20,9 +19,7 @@
     line-height: 120%;
     padding: 120px 0;
     animation: background 20s linear infinite;
-    &:hover {
-      width: 60%;
-    }
+    width: 60%;
     @include for-tablet-layout {
       width: 90%;
       font-size: 13vw;

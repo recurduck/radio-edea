@@ -41,14 +41,21 @@ export function removeSearchTrack(searchIdx) {
     }
 }
 
-
+export function setPage(page) {
+    return (dispatch) => {
+        dispatch({
+            type: 'SET_PAGE',
+            page
+        })
+    }
+}
 
 export function loadFavoriteTracks() {
     return (dispatch) => {
-        trackService.query()
+        return trackService.query()
             .then(tracks => {
                 console.log('tracks from DB:', tracks)
-                dispatch({
+                return dispatch({
                     type: 'SET_MY_TRACKS',
                     tracks
                 })

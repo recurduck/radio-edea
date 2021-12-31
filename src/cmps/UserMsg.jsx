@@ -11,7 +11,7 @@ export default function UserMsg() {
   useEffect(() => {
     let removeEvent = userEvents.on('show-user-msg', (msg) => {
       setMsg({ ...msg })
-      setTimeout(() => setMsg(null), 20500)
+      setTimeout(() => setMsg(null), 2500)
     })
     return () => {
       removeEvent()

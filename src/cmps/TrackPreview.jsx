@@ -1,8 +1,9 @@
 import headphones from '../assets/icons/headphones.svg'
 import duration from '../assets/icons/duration.svg'
 import QueryNavLink from './QueryNavLink'
+import { useState } from 'react'
 export default function TrackPreview({ track, displayList }) {
-
+    const [isLoadTrack, setIsLoadTrack] = useState(null)
     const formatToDuration = (timestamp) => {
         const date = new Date(timestamp * 1000);
         return date.toGMTString().match(/([\d]+:){2}[\d]+/)[0]
@@ -12,13 +13,10 @@ export default function TrackPreview({ track, displayList }) {
         return timestamp.match(/([\d]+-){2}[\d]+/)[0]
     }
 
-    const onSendTrackToPlayer = (ev) => {
-        
-    }
     return (
         <QueryNavLink to={`/library/${track.key.replaceAll('/', '~')}`}
-            className={`track-card flex ${displayList ? 'list' : 'tile'}`}
-            onClick={(ev) => onSendTrackToPlayer(ev)}
+            className={`track-card flex ${displayList ? 'list ' : 'tile '}${isLoadTrack?'move-play':''}`}
+            onClick={() => setIsLoadTrack(true)}
         >
             <img src={displayList ? track.pictures.medium : track.pictures.large} alt='trackImg' />
             <div className='track-preview flex column w-100'>

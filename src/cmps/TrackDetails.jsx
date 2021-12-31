@@ -29,32 +29,40 @@ export default function TrackDetails() {
     }, [params.trackId])
 
     useEffect(() => {
-        if (mywidget.current) {
-            const myWidget = window.Mixcloud.PlayerWidget(mywidget.current);
-            myWidget.ready.then(() => {
-                console.log("MixCloud Widget is initalized");
-                setWidget(myWidget);
-            });
-        }
-    }, [])
+        mywidget?.current && intializeWidget(mywidget.current);
+    }, [mywidget.current])
 
     useEffect(() => {
+        console.log("Selected track", track);
+        console.log(widget);
         if (widget && track) {
-            widget.load(track.key, true).then(() => {
-                widget.play()
-                widget.getIsPaused().then(res => setIsPlay(!res))
-                widget.events.pause.on(() => { setIsPlay(false) })
-                widget.events.play.on(() => {
-                    console.log("PLAY")
-                    setIsPlay(true);
-                })
-                widget.events.ended.on(() => loadTrack())
-            })
+            loadTrack(track);
         }
     }, [track])
 
+    const intializeWidget = (widgetElement) => {
+        if (widgetElement) {
+            const myWidget = window.Mixcloud.PlayerWidget(widgetElement);
+            myWidget.ready.then(() => {
+                console.log("MixCloud Widget is initalized", myWidget);
+                setWidget(myWidget);
+
+                widget.events.pause.on(() => {
+                    setIsPlay(false)
+                });
+
+                widget.events.play.on(() => {
+                    console.log("PLAY");
+                    setIsPlay(true);
+                })
+                widget.events.ended.on(() => loadTrack())
+
+            });
+        }
+    }
+
     const onToggleTrack = () => {
-        if (widget && track) {
+        if (widget) {
             widget.togglePlay()
             widget.getIsPaused().then(isPaused => setIsPlay(!isPaused))
         }
@@ -67,12 +75,10 @@ export default function TrackDetails() {
             if (song.key === key) {
                 widget.seek()
             } else {
-                widget.ready.then(() => {
-                    widget.load(song.key, true).then(() => {
-                        widget.play()
-                        widget.getIsPaused().then(res => setIsPlay(!res))
-                    })
-                });
+                widget.load(song.key, true).then(() => {
+                    widget.play()
+                    widget.getIsPaused().then(res => setIsPlay(!res))
+                })
             }
         })
     }

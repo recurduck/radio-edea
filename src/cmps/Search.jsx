@@ -2,8 +2,6 @@ import { Outlet, useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { searchService } from '../services/search.service'
-
 import TrackList from './TrackList'
 import Loader from './Loader'
 import UserMsg from './UserMsg'
@@ -11,17 +9,21 @@ import UserMsg from './UserMsg'
 import list from '../assets/icons/list.svg'
 import tiles from '../assets/icons/tiles.svg'
 
-import { loadTracks } from '../store/track.actions'
+import { loadTracks, setPage } from '../store/track.actions'
+import { searchService } from '../services/search.service'
 
 export default function Search() {
-    // const [tracks, setTracks] = useState(null)
     const [loading, setLoading] = useState(false)
     const [isListDisplay, setIsListDisplay] = useState(true)
     let [searchParams, setSearchParams] = useSearchParams({ replace: true })
 
-    const { tracks } = useSelector(state => state.trackModule)
-    const { currSearch } = useSelector(state => state.trackModule)
+    const { tracks, page } = useSelector(state => state.trackModule);
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        const isPrefList = searchService.getPreference()
+        setIsListDisplay(isPrefList)
+    },[])
 
     useEffect(() => {
         setLoading(false)
@@ -35,6 +37,7 @@ export default function Search() {
     const onSearch = (ev) => {
         ev.preventDefault()
         setLoading(true)
+        dispatch(setPage(1))
         setTimeout(async () => {
             const trackName = searchParams.get('search')
             dispatch(loadTracks(trackName))
@@ -42,13 +45,13 @@ export default function Search() {
     }
 
     const onPrevPage = async () => {
-
-        // setTracks(await searchService.search(searchParams.get('search'), tracks.paging.previous))
+        dispatch(setPage(page-1))
     }
-
+    
     const onNextPage = async () => {
-        // setTracks(await searchService.search(searchParams.get('search'), tracks.paging.next))
+        dispatch(setPage(page+1))
     }
+
     return (
         <div className='search container flex'>
             <nav className='flex column' style={{ borderRight: 'solid 1px', padding: '1rem', color: 'black' }}>
@@ -65,8 +68,9 @@ export default function Search() {
 
                 <div className='display-controler flex space-between w-100'>
                     <div className='pagination'>
-                        <button onClick={onPrevPage} disabled={!tracks?.paging?.previous}>Previous</button>
-                        <button onClick={onNextPage} disabled={!tracks?.paging?.next}>Next</button>
+                        <button onClick={onPrevPage} disabled={page===1}>Previous</button>
+                        <span>{page}</span>
+                        <button onClick={onNextPage} disabled={!tracks || tracks.data.length <= page*6}>Next</button>
                     </div>
                     <div>
                         <button onClick={() => { setIsListDisplay(false) }}>
