@@ -16,8 +16,6 @@ export function trackReducer(state = initialState, action) {
             newState = { ...state, searchHistory: action.searchHistory }
             break
         case 'ADD_SEARCH':
-            console.log('state.currSearch !== action.trackName:', state.currSearch, action.trackName);
-
             if (state.currSearch !== action.trackName) {
                 newState = { ...state, searchHistory: [action.trackName, ...state.searchHistory], currSearch: action.trackName }
             }

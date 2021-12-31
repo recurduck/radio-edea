@@ -13,10 +13,16 @@ export default function TrackPreview({ track, displayList }) {
         return timestamp.match(/([\d]+-){2}[\d]+/)[0]
     }
 
+    const onLoadTrack = () => {
+        setIsLoadTrack(true)
+        setTimeout(() => {
+            setIsLoadTrack(false)
+        }, 2500)
+    }
     return (
         <QueryNavLink to={`/library/${track.key.replaceAll('/', '~')}`}
             className={`track-card flex ${displayList ? 'list ' : 'tile '}${isLoadTrack?'move-play':''}`}
-            onClick={() => setIsLoadTrack(true)}
+            onClick={() => onLoadTrack()}
         >
             <img src={displayList ? track.pictures.medium : track.pictures.large} alt='trackImg' />
             <div className='track-preview flex column w-100'>

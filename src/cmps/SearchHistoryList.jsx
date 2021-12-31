@@ -32,7 +32,7 @@ export default function SearchHistoryList() {
         dispatch(removeSearchTrack(idx))
     }
 
-    return (<div className={`recent-search ${isHistoryShow?'show':''}`}>
+    return (<div className={`recent-search ${isHistoryShow ? 'show' : ''}`}>
         <div className='recent-search-title flex space-around'>
             <h2 className='mb-3'>Recent 5 searches</h2>
             <img onClick={() => setIsHistoryShow(!isHistoryShow)} src={Arrow} alt='showSearch' />

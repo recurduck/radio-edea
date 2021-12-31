@@ -5,6 +5,13 @@
     position: relative;
     width: 100%;
   }
+  @include for-tablet-layout {
+    width: 100%;
+    align-self: center;
+    h1 {
+      width: 100%;
+    }
+  }
 }
 .widget-player { 
   transition: .4s;
@@ -13,6 +20,9 @@
   &.hide {
     opacity: 0.2;
     height: 0px;
+  }
+  @include for-tablet-layout {
+    height: 60px;
   }
 }
 .demo-player {
@@ -28,6 +38,12 @@
     font-size: 2rem;
     color: $clr1;
     text-align: center;
+  }
+  @include for-tablet-layout {
+    height: 60px;
+    span {
+      font-size: 1rem;
+    }
   }
 }
 .disk-player {
@@ -111,4 +127,5 @@
       0 0 0 96px #fff3,
       0 0 0 100px #000;
   }
+  
 }

@@ -36,17 +36,16 @@ function remove(searchIdx) {
 
 function setPreference(pref) {
     const user = localstorageService.loadFromStorage(KEY) || {}
-    user.isPrefList = pref
+    user.pref = pref
     localstorageService.saveToStorage(KEY, user)
 }
 
 function getPreference() {
     const user = localstorageService.loadFromStorage(KEY) || {}
-    return user.isPrefList
+    return user.pref || 'list'
 }
 
 function _addSearchHistory(trackName) {
-    console.log(trackName)
     const user = localstorageService.loadFromStorage(KEY) || {}
     if (!user.searchHistory) user.searchHistory = []
     if (user.searchHistory[0] !== trackName) user.searchHistory.unshift(trackName)

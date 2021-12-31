@@ -2,7 +2,6 @@
 @import './setup/reset.scss';
 @import './setup/typography.scss';
 @import './setup/variables.scss';
-@import './setup/functions.scss';
 @import './setup/mixins.scss';
 
 //Basics
@@ -12,7 +11,6 @@
 
 //Cmps
 @import './cmps/header.scss';
-@import './cmps/footer.scss';
 @import './cmps/search.scss';
 @import './cmps/track-preview.scss';
 @import './cmps/track-details.scss';

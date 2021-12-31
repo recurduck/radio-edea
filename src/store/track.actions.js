@@ -54,7 +54,6 @@ export function loadFavoriteTracks() {
     return (dispatch) => {
         return trackService.query()
             .then(tracks => {
-                console.log('tracks from DB:', tracks)
                 return dispatch({
                     type: 'SET_MY_TRACKS',
                     tracks

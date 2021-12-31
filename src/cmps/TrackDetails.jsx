@@ -21,10 +21,10 @@ export default function TrackDetails() {
             try {
                 fetchAPI()
             } catch (err) {
-                //eventbus
+                showErrorMsg('Got error while get the track')
             }
         } else {
-            //redux need to be reversed
+            //todo: redux need to be reversed - first redux than api
         }
     }, [params.trackId])
 
@@ -33,8 +33,6 @@ export default function TrackDetails() {
     }, [mywidget.current])
 
     useEffect(() => {
-        console.log("Selected track", track);
-        console.log(widget);
         if (widget && track) {
             loadTrack(track);
         }
@@ -44,7 +42,6 @@ export default function TrackDetails() {
         if (widgetElement) {
             const myWidget = window.Mixcloud.PlayerWidget(widgetElement);
             myWidget.ready.then(() => {
-                console.log("MixCloud Widget is initalized", myWidget);
                 setWidget(myWidget);
 
                 widget.events.pause.on(() => {
@@ -52,7 +49,6 @@ export default function TrackDetails() {
                 });
 
                 widget.events.play.on(() => {
-                    console.log("PLAY");
                     setIsPlay(true);
                 })
                 widget.events.ended.on(() => loadTrack())
@@ -69,7 +65,6 @@ export default function TrackDetails() {
         else showErrorMsg('Please select track to play')
     }
 
-    // const loadTrack = (song = track) => {
     const loadTrack = (song = track) => {
         widget.getCurrentKey().then(key => {
             if (song.key === key) {
@@ -94,5 +89,6 @@ export default function TrackDetails() {
                 <iframe ref={mywidget} className={`widget-player ${track ? '' : 'hide'}`} title='widget' width='100%' height='120' frameBorder='0'
                     src={'https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fspartacus%2Fparty-time%2F&hide_cover=1&light=0'}></iframe>
             </div>
-        </div>)
+        </div>
+    )
 }

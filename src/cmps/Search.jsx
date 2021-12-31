@@ -22,7 +22,7 @@ export default function Search() {
 
     useEffect(() => {
         const isPrefList = searchService.getPreference()
-        setIsListDisplay(isPrefList)
+        setIsListDisplay(isPrefList==='list'?true:false)
     },[])
 
     useEffect(() => {
@@ -44,12 +44,17 @@ export default function Search() {
         }, 1000)
     }
 
-    const onPrevPage = async () => {
+    const onPrevPage = () => {
         dispatch(setPage(page-1))
     }
     
-    const onNextPage = async () => {
+    const onNextPage = () => {
         dispatch(setPage(page+1))
+    }
+
+    const onChangeDisplay = (display) => {
+        searchService.setPreference(display)
+        setIsListDisplay(display==='list'?true:false)
     }
 
     return (
@@ -73,10 +78,10 @@ export default function Search() {
                         <button onClick={onNextPage} disabled={!tracks || tracks.data.length <= page*6}>Next</button>
                     </div>
                     <div>
-                        <button onClick={() => { setIsListDisplay(false) }}>
+                        <button onClick={() => { onChangeDisplay('tiles') }}>
                             <img className={isListDisplay ? '' : 'active'} src={tiles} alt='tiles' />
                         </button>
-                        <button onClick={() => { setIsListDisplay(true) }}>
+                        <button onClick={() => { onChangeDisplay('list') }}>
                             <img className={isListDisplay ? 'active' : ''} src={list} alt='list' />
                         </button>
                     </div>

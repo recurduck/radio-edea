@@ -20,7 +20,6 @@ export default function Header() {
                     <ul className='flex'>
                         <li><NavLink to='/'>Home</NavLink></li>
                         <li><NavLink to='/library'>Library</NavLink></li>
-                        <li><NavLink to='/mysongs'>MySongs</NavLink></li>
                     </ul>
                 </nav>
             </div>

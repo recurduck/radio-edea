@@ -5,44 +5,55 @@ header.container {
   .logo {
     width: 250px;
   }
-  input[type=checkbox] {
+  input[type="checkbox"] {
     display: none;
   }
   .dropdown {
-    align-items: center
+    align-items: center;
   }
   ul {
     max-height: 0px;
-    transition: all 1s cubic-bezier(.325, 1, .22, 1);
+    transition: all 1s cubic-bezier(0.325, 1, 0.22, 1);
     align-items: center;
   }
-  li{ 
-    padding: 5px 10px;
-    a:hover, a.active{
-      text-decoration: underline;
+  li {
+    padding: 10px 15px;
+    font-size: 1.25rem;
+    a:hover,
+    a.active {
       color: $clr1;
-      transition: .3s;
+      transition: 0.3s;
     }
   }
   @include for-tablet-layout {
     .dropdown {
       align-items: flex-start;
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+      right: 0px;
+      top: 0px;
     }
     nav {
+      position: relative;
+      top: 60px;
+      width: 100%;
+      background-color: $clr4;
       ul {
         flex-direction: column;
         align-items: stretch;
         max-height: 0px;
         overflow: hidden;
-        transition: all 1s cubic-bezier(.325, 1, .22, 1);
+        transition: all 1s cubic-bezier(0.325, 1, 0.22, 1);
       }
       li {
-        border-bottom: .18rem solid #fff;
+        border-bottom: 0.18rem solid $clr7;
         padding: 5px 0;
+        min-height: 50px;
         text-align: center;
         :last-of-type {
-          margin-bottom: .625rem;
-        }  
+          margin-bottom: 0.625rem;
+        }
       }
     }
     .hamburger {
@@ -52,17 +63,17 @@ header.container {
       right: 13px;
       height: 27px;
       width: 27px;
-      transition: all 1s cubic-bezier(.19, 1, .22, 1);
+      transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
       cursor: pointer;
       .line {
         position: absolute;
         display: block;
         background: $clr1;
         width: 18px;
-        height: .15rem;
-        border-radius: .2rem;
+        height: 0.15rem;
+        border-radius: 0.2rem;
         left: 0;
-        transition: all .6s cubic-bezier(.5, .1, 0, 1.2);
+        transition: all 0.6s cubic-bezier(0.5, 0.1, 0, 1.2);
       }
       .line-1 {
         top: 0;
@@ -77,11 +88,11 @@ header.container {
         top: 14px;
       }
     }
-    input[type=checkbox]:checked {
+    input[type="checkbox"]:checked {
       ~ nav ul {
         height: auto;
         max-height: 12rem;
-        transition: all 1s cubic-bezier(.5, 1, .22, 1);
+        transition: all 1s cubic-bezier(0.5, 1, 0.22, 1);
       }
       ~ label {
         .line-1 {
@@ -101,4 +112,3 @@ header.container {
     }
   }
 }
-

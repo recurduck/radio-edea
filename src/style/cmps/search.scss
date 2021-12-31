@@ -1,10 +1,11 @@
 .search {
   color: $clr4;
-  // display: block;
   position: relative;
   width: 100%;
   min-height: 100%;
-  overflow: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
+
   background-color: #0e001a;
   color: $White;
   .search-form {
@@ -18,7 +19,8 @@
       font-size: 1rem;
       background-color: $clr4;
       color: $White;
-      &:focus , &:hover{
+      &:focus,
+      &:hover {
         background-color: $clr7;
         color: $White;
       }
@@ -35,7 +37,7 @@
   nav {
     width: 34%;
     h1 {
-      color: red
+      color: red;
     }
   }
   .pagination {
@@ -50,6 +52,24 @@
     }
     .search-history {
       flex-grow: 1;
+    }
+  }
+  @include for-tablet-layout {
+    flex-direction: column-reverse;
+    padding: 5px;
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    nav {
+      width: 100%;
+      height: 50%;
+      overflow: hidden;
+    }
+    main {
+      height: 110%;
+      width: 100%;
+      min-height: 0;
+      flex-direction: column;
     }
   }
 }
@@ -72,7 +92,7 @@
     border-radius: 10px;
     text-align: center;
     vertical-align: middle;
-    transition: .3s;
+    transition: 0.3s;
     &:hover {
       background-color: rgba(77, 77, 77, 0.438);
     }

@@ -40,3 +40,9 @@
     }
   }
 }
+@include for-tablet-layout {
+  .searches-history {
+    width: 100%;
+    display: none;
+  }
+}

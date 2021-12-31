@@ -30,7 +30,6 @@ render(
               </main>} />
             </Route>
           </Route >
-          <Route path='/mysongs' element={<App />} />
         </Routes>
       </Provider>
     </BrowserRouter>

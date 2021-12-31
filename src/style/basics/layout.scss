@@ -1,6 +1,11 @@
 .app {
     height: 100vh;
     overflow: hidden;
+    @include for-tablet-layout {
+        overflow: hidden;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
 }
 
 .container {
@@ -8,7 +13,6 @@
     position: relative;
     max-width: 1210px;
     padding: 0px 30px;
-    border: 1px black solid;
     margin: 0 auto;
 }
 
@@ -22,6 +26,23 @@
     margin: 0 auto;
 }
 
-section:nth-child(n + 3) {
-    background-color: $darkBlue2;
+//Scroll bar
+/* width */
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff00;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ff6565;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #ff3939;
 }
