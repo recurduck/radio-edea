@@ -7,7 +7,6 @@ const initialState = {
 }
 export function trackReducer(state = initialState, action) {
     let newState = state;
-
     switch (action.type) {
         case 'SET_TRACKS':
             newState = { ...state, tracks: action.tracks }
@@ -29,13 +28,10 @@ export function trackReducer(state = initialState, action) {
             break
         case 'REMOVE_TRACK':
             const tracks = state.favoriteTracks.filter(track => track.key !== action.trackKey)
-            newState = { ...state, tracks }
+            newState = { ...state, favoriteTracks: tracks }
             break
         case 'ADD_TRACK':
-            newState = { ...state, favoriteTracks: [...state.favoriteTracks, action.track] }
-            break
-        case 'CLEAR_MYTRACKS':
-            newState = { ...state, favoriteTracks: [] }
+            newState = { ...state, favoriteTracks: [action.track, ...state.favoriteTracks] }
             break
         case 'SET_PAGE':
             newState = { ...state, page: action.page }

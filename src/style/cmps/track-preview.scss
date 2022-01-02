@@ -1,3 +1,57 @@
+.tracks-container {
+  justify-content: center;
+  transition: 1s;
+  &.wrap > a {
+    margin: 10px;
+  }
+  @include for-tablet-layout {
+    justify-content: flex-start;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    &.list {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    @keyframes insertdisk {
+      0% {
+        top: 0;
+        opacity: 1;
+        z-index: 1;
+      }
+      50% {
+        border-radius: 50%;
+        z-index: 1;
+      }
+      100% {
+        top: -150%;
+        border-radius: 50%;
+        opacity: 0.3;
+        z-index: 1;
+      }
+    }
+    flex-direction: column;
+    .track-prev.tile {
+      flex-direction: column;
+      width: 20%;
+      position: relative;
+      .track-preview {
+        position: absolute;
+        background-color: rgba(36, 36, 36, 0.657);
+        .track-secondary-details {
+          display: none;
+        }
+      }
+      img {
+        width: 100%;
+      }
+      .track-created {
+        display: none;
+      }
+    }
+  }
+}
+
 @keyframes insertdisk {
   0% {
     left: 0;
@@ -15,12 +69,21 @@
     z-index: 1;
   }
 }
-
+.track-prev {
+  &.tile {
+    width: min-content;
+    a {
+      width: 100%;
+    }
+  }
+}
 .track-card {
   border-bottom: 1px solid $clr7;
   min-height: 100px;
   color: $White;
   margin-top: 5px;
+  transition: 0.3s;
+
   &:hover {
     background-color: $clr4;
   }
@@ -39,11 +102,15 @@
   .track-preview {
     justify-content: space-evenly;
     padding: 0px 5px;
+    position: relative;
     h3 {
       color: $clr1;
+      font-family: "Lucida Grande";
     }
     h3 ~ p {
       font-weight: bold;
+      font-family: "Lucida Grande";
+
       height: 17px;
       overflow-y: hidden;
     }
@@ -55,6 +122,7 @@
     }
   }
   &.tile {
+    border-bottom: 0;
     flex-direction: column;
     width: 43%;
     img {
@@ -83,50 +151,27 @@
   }
 }
 
-.tracks-container {
-  display: flex;
-
-  &.wrap > a {
-    margin: 10px;
+.track-like {
+  position: absolute;
+  width: 40px;
+  right: 15px;
+  top: -60px;
+  transition: 0.3s;
+  cursor: pointer;
+  &.unlike {
+    filter: brightness(6) contrast(10);
   }
-  @include for-tablet-layout {
-    @keyframes insertdisk {
-      0% {
-        top: 0;
-        opacity: 1;
-        z-index: 1;
-      }
-      50% {
-        border-radius: 50%;
-        z-index: 1;
-      }
-      100% {
-        top: -150%;
-        border-radius: 50%;
-        opacity: 0.3;
-        z-index: 1;
-      }
-    }
-    flex-direction: column;
-    overflow: scroll;
-    overflow-x: scroll;
-    .tile {
-      flex-direction: column;
-      width: 25%;
-      position: relative;
-      .track-preview {
-        position: absolute;
-        background-color: rgba(36, 36, 36, 0.657);
-        .track-secondary-details {
-          display: none;
-        }
-      }
-      img {
-        width: 100%;
-      }
-      .track-created {
-        display: none;
-      }
-    }
+  &:hover,
+  &.unlike:hover {
+    filter: brightness(2.5) contrast(1);
+  }
+}
+
+.favorite-tracks-list {
+  transition: 0.3s;
+  &.reduce {
+    height: 350px;
+    transition: 0.3s;
+    overflow: hidden;
   }
 }

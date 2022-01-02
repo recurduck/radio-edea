@@ -16,10 +16,11 @@ export default function Header() {
                     <div className="line line-3"></div>
                 </label>
 
-                <nav>
-                    <ul className='flex'>
+                <nav >
+                    <ul className='flex' >
                         <li><NavLink to='/'>Home</NavLink></li>
                         <li><NavLink to='/library'>Library</NavLink></li>
+                        <li><NavLink to='/favorites'>Favorites</NavLink></li>
                     </ul>
                 </nav>
             </div>

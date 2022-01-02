@@ -2,17 +2,17 @@ import { Outlet, useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import TrackList from './TrackList'
-import Loader from './Loader'
-import UserMsg from './UserMsg'
+import TrackList from '../cmps/track/TrackList'
+import Loader from '../cmps/Loader'
+import UserMsg from '../cmps/UserMsg'
 
 import list from '../assets/icons/list.svg'
 import tiles from '../assets/icons/tiles.svg'
 
-import { loadTracks, setPage } from '../store/track.actions'
+import { loadFavoriteTracks, loadTracks, setPage } from '../store/track.actions'
 import { searchService } from '../services/search.service'
 
-export default function Search() {
+export default function Library() {
     const [loading, setLoading] = useState(false)
     const [isListDisplay, setIsListDisplay] = useState(true)
     let [searchParams, setSearchParams] = useSearchParams({ replace: true })
@@ -22,8 +22,9 @@ export default function Search() {
 
     useEffect(() => {
         const isPrefList = searchService.getPreference()
+        dispatch(loadFavoriteTracks())
         setIsListDisplay(isPrefList==='list'?true:false)
-    },[])
+    },[dispatch])
 
     useEffect(() => {
         setLoading(false)
@@ -59,7 +60,7 @@ export default function Search() {
 
     return (
         <div className='search container flex'>
-            <nav className='flex column' style={{ borderRight: 'solid 1px', padding: '1rem', color: 'black' }}>
+            <nav className='flex column'>
                 <form className='search-form flex pb-2' onSubmit={(ev) => onSearch(ev)}>
                     <input name='search'
                         value={searchParams.get('search') || ''}

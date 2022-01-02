@@ -18,6 +18,12 @@ export function loadTracks(trackName) {
                     trackName
                 })
             })
+            .then(() => {
+                dispatch({
+                    type: 'SET_PAGE',
+                    page: 1
+                })
+            })
     }
 }
 
@@ -52,33 +58,33 @@ export function setPage(page) {
 
 export function loadFavoriteTracks() {
     return (dispatch) => {
-        return trackService.query()
-            .then(tracks => {
-                return dispatch({
-                    type: 'SET_MY_TRACKS',
-                    tracks
-                })
-            })
-            .catch(err => showErrorMsg('Cannot load tracks'))
+        const tracks = trackService.query() || []
+        return dispatch({
+            type: 'SET_MY_TRACKS',
+            tracks
+        })
     }
 }
 
 export function addFavoriteTrack(track) {
     return (dispatch) => {
+        trackService.add(track)
         dispatch({
             type: 'ADD_TRACK',
             track
         })
-        showSuccessMsg('Material removed')
+        showSuccessMsg('Track added to Favorites')
     }
 }
 
 export function removeFavoriteTrack(trackKey) {
     return (dispatch) => {
+        trackService.remove(trackKey)
         dispatch({
             type: 'REMOVE_TRACK',
             trackKey
         })
+        showSuccessMsg('Track have been removed from Favorites')
     }
 }
 

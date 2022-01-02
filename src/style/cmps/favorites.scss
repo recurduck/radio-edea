@@ -1,0 +1,48 @@
+.favorites-track {
+    background-color: $clr7;
+    padding-top: 15px;
+    @include for-tablet-layout {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .favorite-tracks-list {
+        margin-top: 20px;
+        gap: 10px;
+        max-height: 85vh;
+        @include for-tablet-layout {
+            max-height: 100vh;
+        }
+        overflow-y: scroll;
+        padding-top: 5px;
+    }
+    .track-prev.tile {
+        background-color: $clr4;
+        border-radius: 15px;
+        padding: 10px;
+        width: 220px;
+        &:hover {
+            box-shadow: 0px 0px 1px 1px white;
+            .track-card > img {
+                animation: rotate 5s linear infinite;
+            }
+        }
+        .track-card > img {
+            border-radius: 50%;
+        }
+        .track-secondary-details {
+            @include for-tablet-layout {
+                flex-direction: column;
+                justify-content: space-between;
+                height: 80%;
+                width: 200px;
+            }
+        }
+        .track-like {
+            position: relative;
+            width: 30px;
+            left: 165px;
+            top: 5px;
+        }
+    }
+}

@@ -1,18 +1,28 @@
+import { localstorageService } from './localstorage.service.js'
+
 export const trackService = {
     query,
-    getById,
     add,
     remove,
 }
 
-function query(filterBy, entityType = 'mytracks') {
+const KEY = 'userDB'
+
+function query() {
+    const user = localstorageService.loadFromStorage(KEY) || {}
+    return user.favorites
 }
 
-async function getById(trackId) {
+function add(track) {
+    const user = localstorageService.loadFromStorage(KEY) || {}
+    if (!user.favorites) user.favorites = []
+    user.favorites.unshift(track)
+    localstorageService.saveToStorage(KEY, user)
+
 }
 
-async function add(track) {
-}
-
-async function remove(trackId) {
+function remove(trackId) {
+    let user = localstorageService.loadFromStorage(KEY)
+    user.favorites = user.favorites.filter(favTrack => favTrack.key !== trackId)
+    localstorageService.saveToStorage(KEY, user)
 }

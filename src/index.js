@@ -7,10 +7,11 @@ import './style/style.scss'
 import {store} from './store/store.js'
 
 import App from './App'
-import Search from './cmps/Search'
-import TrackDetails from './cmps/TrackDetails'
+import Library from './pages/Library'
+import TrackDetails from './cmps/track/TrackDetails'
 import UserPreferences from './cmps/UserPreferences'
-import Hero from './cmps/Hero'
+import Home from './pages/Home'
+import Favorites from './pages/Favorites'
 
 render(
   <React.StrictMode>
@@ -18,8 +19,8 @@ render(
       <Provider store={store}>
         <Routes>
           <Route path='/' element={<App />} >
-            <Route index element={<Hero />} />
-            <Route path='library' element={<Search />}>
+            <Route index element={<Home />} />
+            <Route path='library' element={<Library />}>
               <Route index element={<main className=''>
                 <TrackDetails />
                 <UserPreferences />
@@ -29,6 +30,7 @@ render(
                 <UserPreferences />
               </main>} />
             </Route>
+            <Route path='favorites' element={<Favorites />}/>
           </Route >
         </Routes>
       </Provider>

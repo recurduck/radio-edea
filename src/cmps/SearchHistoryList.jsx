@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -7,15 +7,14 @@ import { loadSearchHistory, loadTracks, removeSearchTrack } from '../store/track
 
 import Trash from '../assets/icons/trash.svg'
 import Arrow from '../assets/icons/arrow.svg'
-export default function SearchHistoryList() {
+export default function SearchHistoryList({isHistoryShow, setIsHistoryShow}) {
     let [searchParams, setSearchParams] = useSearchParams({ replace: true });
-    let [isHistoryShow, setIsHistoryShow] = useState(true);
     const { searchHistory } = useSelector(state => state.trackModule)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(loadSearchHistory())
-    }, [])
+    }, [dispatch])
 
     const onSetNewSearch = (idx) => {
         const search = searchHistory[idx]
@@ -28,7 +27,8 @@ export default function SearchHistoryList() {
         }
     }
 
-    const onDeleteSearch = (idx) => {
+    const onDeleteSearch = (ev, idx) => {
+        ev.stopPropagation()
         dispatch(removeSearchTrack(idx))
     }
 
@@ -38,9 +38,9 @@ export default function SearchHistoryList() {
             <img onClick={() => setIsHistoryShow(!isHistoryShow)} src={Arrow} alt='showSearch' />
         </div>
         {isHistoryShow && searchHistory?.slice(0, 5).map((searchStr, idx) =>
-        (<div className='search-value flex align-center space-between mb-2' key={idx}>
-            <p onClick={() => onSetNewSearch(idx)}><span>Search for: </span>{searchStr}</p>
-            <img src={Trash} alt='Del' onClick={() => onDeleteSearch(idx)} />
+        (<div onClick={() => onSetNewSearch(idx)} className='search-value flex align-center space-between mb-2' key={idx}>
+            <p><span>Search for: </span>{searchStr}</p>
+            <img src={Trash} alt='Del' onClick={(ev) => onDeleteSearch(ev, idx)} />
         </div>))}
     </div>
     )
